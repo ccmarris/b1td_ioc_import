@@ -1,0 +1,6 @@
+bloxone>=0.8.10
+pkg_resources
+logging
+yaml
+json
+csv

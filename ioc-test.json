@@ -1,0 +1,7 @@
+{
+  "iocs":
+            [
+                { "ioc": "me.test", "threat_level": 100 },
+                { "ioc": "me.internal", "threat_level": 50 }
+            ]
+}
