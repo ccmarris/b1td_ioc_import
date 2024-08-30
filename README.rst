@@ -2,7 +2,7 @@
 Infoblox Threat Defense
 =======================
 
-| Version: 0.0.3
+| Version: 0.0.4
 | Author: Chris Marrison
 | Email: chris@infoblox.com
 

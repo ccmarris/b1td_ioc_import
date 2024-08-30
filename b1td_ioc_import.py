@@ -46,7 +46,7 @@ POSSIBILITY OF SUCH DAMAGE.
 
 ------------------------------------------------------------------------
 """
-__version__ = '0.0.3'
+__version__ = '0.0.4'
 __author__ = 'Chris Marrison'
 __author_email__ = 'chris@infoblox.com'
 
@@ -67,6 +67,8 @@ log = logging.getLogger(__name__)
 
 class IOCReader():
     '''
+    Read an input file in CSV or JSON format and make available as 
+    object property self.iocs
     '''
     def __init__(self,
                  filename:str,
@@ -87,6 +89,7 @@ class IOCReader():
 
     def read_file(self):
         '''
+        Read JSON or CSV format file and return as property
         '''
         status = False
         data: list = []
@@ -116,6 +119,13 @@ class IOCReader():
 
     def normalise_json(self, data:dict) -> list:
         '''
+        Take json data and return the list of IOCs
+
+        Parameters:
+            data:dict = json data structure
+        
+        Returns:
+            ioc_data:list = extracted list of ioc data or empty list
         '''
         ioc_data:list
         key_struct:list
@@ -151,6 +161,7 @@ class IOCReader():
 
     def field_map(self, data:list):
         '''
+        Map the field containing the IOC to the correct type
         '''
         ioc_data:list = []
         mapped_ioc:dict = {}
@@ -179,6 +190,9 @@ class IOCReader():
 
 class TDIMPORT():
     '''
+    Create a Simple CSV, NIOS RPZ CSV or Custom List in Threat Defense
+
+    TODO: TIDE Import
     '''
 
     def __init__(self,
@@ -190,7 +204,11 @@ class TDIMPORT():
                  ):
         '''
         Parameters:
+            ioc_data (list): Parsed IOC data
             custom_list (str): base name of custom lists
+            policy (str): Policy to add custom list to
+            data_profile (str): TIDE data profile
+            config (str): Full path for bloxone .ini file
         '''
         self.iocs:list = ioc_data
         self.custom_list:str = custom_list
@@ -204,6 +222,7 @@ class TDIMPORT():
 
     def set_custom_list(self, name:str):
         '''
+        Set custom_list property to name
         '''
         self.base_name = name
         return
@@ -211,6 +230,7 @@ class TDIMPORT():
 
     def set_policy_name(self, name:str):
         '''
+        Set policy property to name
         '''
         self.policy = name
         return
@@ -218,6 +238,7 @@ class TDIMPORT():
 
     def set_data_profile(self, name:str):
         '''
+        Set data profile property to name
         '''
         self.policy = name
         return
@@ -225,6 +246,7 @@ class TDIMPORT():
 
     def set_output_file(self, filename:str):
         '''
+        Set output filename for CSV outputs
         '''
         self.filename = filename
         return
@@ -232,6 +254,7 @@ class TDIMPORT():
 
     def items_described(self):
         '''
+        Create items_described list for TD custom list
         '''
         item:str =''
         description:list = []
@@ -535,6 +558,7 @@ class TDIMPORT():
         return handler
 
 
+# Demo script showing usage
 
 # ** Functions **
 
